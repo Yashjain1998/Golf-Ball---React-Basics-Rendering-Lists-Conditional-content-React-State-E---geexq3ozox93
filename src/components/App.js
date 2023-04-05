@@ -5,26 +5,24 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            renderBall: false,
+            renderBall: false,//variable needed to be changed
             posi : 0,
             ballPosition: { left: "0px" }
         };
-        this.renderChoice = this.renderBallOrButton.bind(this)
+        this.renderChoice = this.renderChoice.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
     };
 
+    //call back function
     buttonClickHandler() {
    
    }
-    renderBallOrButton() {
-		if (this.state.renderBall) {
-		    return <div className="ball" style={this.state.ballPosition}></div>
-		} else {
-		    return <button onClick={this.buttonClickHandler} >Click For One Ball</button>
-		}
+    renderChoice() {
+		if(this.state.renderBall){return <div className="ball" style={this.state.ballPosition}></div>}
+		 else   return <button onClick={this.buttonClickHandler} >Click For One Ball</button>
     }
 
-    // bind ArrowRight keydown event
+    //bind ArrowRight keydown event
     componentDidMount() {
       
     }
@@ -32,7 +30,7 @@ class App extends Component {
     render() {
         return (
             <div className="playground">
-                {this.renderBallOrButton()}
+                {this.renderChoice()}
             </div>
         )
     }
