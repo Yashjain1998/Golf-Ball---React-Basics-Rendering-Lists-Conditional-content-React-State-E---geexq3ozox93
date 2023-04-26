@@ -7,15 +7,15 @@ class App extends Component {
         this.state = {
             renderBall: false,//variable needed to be changed
             posi : 0,
-            ballPosition: { left: "0px" }
+            ballPosition: { left: "px" }
         };
         this.renderChoice = this.renderChoice.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
     };
-
     //call back function
     buttonClickHandler() {
-   
+        this.setState({...this.state,renderBall: true})
+        this.renderChoice()
    }
     renderChoice() {
 		if(this.state.renderBall){return <div className="ball" style={this.state.ballPosition}></div>}
@@ -24,7 +24,26 @@ class App extends Component {
 
     //bind ArrowRight keydown event
     componentDidMount() {
-      
+        document.addEventListener("keydown",this.handleListener);
+        return () => document.removeEventListener("keydown",this.handleListener);
+    }
+    handleListener =  (event)=>{
+        console.log(event.keyCode)
+        switch(event.keyCode){
+            
+            case 39 :
+                this.move(5);
+                // console.log(ballPosition);
+
+            break;
+          
+        };
+    }
+    move = (l)=>{
+        this.setState({
+            ...this.state, posi : this.state.posi+5,
+            ballPosition: { left:  this.state.posi+5+"px"}
+        })
     }
 
     render() {
