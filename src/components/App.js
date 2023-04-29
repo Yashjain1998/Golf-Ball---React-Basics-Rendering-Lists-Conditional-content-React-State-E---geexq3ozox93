@@ -12,6 +12,7 @@ class App extends Component {
         this.renderChoice = this.renderChoice.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
 	this.handleListener=this.handleListener.bind(this)
+	 this.move=this.move.bind(this)
     };
     //call back function
     buttonClickHandler() {
@@ -29,18 +30,17 @@ class App extends Component {
         return () => document.removeEventListener("keydown",this.handleListener);
     }
     handleListener(event){
-        console.log(event.keyCode)
+   
         switch(event.keyCode){
             
             case 39 :
                 this.move(5);
-                // console.log(ballPosition);
 
             break;
           
         };
     }
-    move = (l)=>{
+    move(l){
         this.setState({
             ...this.state, posi : this.state.posi+5,
             ballPosition: { left:  this.state.posi+5+"px"}
