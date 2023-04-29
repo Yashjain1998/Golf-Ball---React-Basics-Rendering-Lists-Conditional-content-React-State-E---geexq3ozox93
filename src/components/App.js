@@ -11,6 +11,7 @@ class App extends Component {
         };
         this.renderChoice = this.renderChoice.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
+	this.handleListener=this.handleListener.bind(this)
     };
     //call back function
     buttonClickHandler() {
@@ -27,7 +28,7 @@ class App extends Component {
         document.addEventListener("keydown",this.handleListener);
         return () => document.removeEventListener("keydown",this.handleListener);
     }
-    handleListener =  (event)=>{
+    handleListener(event){
         console.log(event.keyCode)
         switch(event.keyCode){
             
